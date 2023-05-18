@@ -7,25 +7,25 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.senac.model.Pessoa;
+import br.com.senac.model.Role;
 
 public class PessoaDetails implements UserDetails {
 
 	private String nome;
 	private String senha;
-	private List perfis;
-	
+	private List<Role> roles;
 	
 	public PessoaDetails(Pessoa pessoa) {
 		nome = pessoa.getNome();
 		senha = pessoa.getSenha();
-		perfis = pessoa.getPerfil();
+		roles = pessoa.getRoles();
 	}
 	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
-		return (Collection<? extends GrantedAuthority>) this.perfis;
+		return (Collection<? extends GrantedAuthority>) this.roles;
 	}
 
 	@Override
@@ -57,6 +57,37 @@ public class PessoaDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
 
 	
 }

@@ -28,8 +28,6 @@ public class PessoaService {
 		
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
 		List perfil = new ArrayList();
-		perfil.add("USER");
-		pessoa.setPerfil(perfil);
 		return pessoaRepository.save(pessoa);
 	}
 	
